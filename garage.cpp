@@ -24,7 +24,6 @@ Garage::Garage(const Garage& other)
 // деструктор
 Garage::~Garage() {
     std::cout << "Удаляется автомастерская по адресу: " << address_ << std::endl;
-    // НЕ удаляем attached_cars_, потому что машины существуют отдельно
 }
 
 // оператор присваивания
@@ -66,7 +65,6 @@ void Garage::attach_car(Car* car) {
         return;
     }
     
-    // Проверяем, нет ли уже такой машины
     auto it = std::find_if(attached_cars_.begin(), attached_cars_.end(),
         [car](Car* c) { return c->get_license_plate() == car->get_license_plate(); });
     
@@ -109,14 +107,12 @@ Car* Garage::find_car(const std::string& license_plate) {
 // метод прикручивания магнитолы к машине
 bool Garage::install_radio_to_car(const std::string& license_plate, 
                                   const std::string& radio_model) {
-    // Ищем машину
     Car* car = find_car(license_plate);
     if (car == nullptr) {
         std::cout << "Не удалось установить магнитолу: машина не найдена" << std::endl;
         return false;
     }
     
-    // Ищем магнитолу
     auto it = std::find_if(available_radios_.begin(), available_radios_.end(),
         [&radio_model](const Radio& r) { return r.model == radio_model; });
     
@@ -126,7 +122,6 @@ bool Garage::install_radio_to_car(const std::string& license_plate,
         return false;
     }
     
-    // Устанавливаем магнитолу в машину
     car->set_radio(&(*it));
     std::cout << "Магнитола \"" << radio_model << "\" успешно установлена в автомобиль "
               << car->get_brand() << " " << car->get_model() 
@@ -135,7 +130,6 @@ bool Garage::install_radio_to_car(const std::string& license_plate,
     return true;
 }
 
-// вывести информацию о мастерской
 void Garage::print_info() const {
     std::cout << "\n=== ИНФОРМАЦИЯ ОБ АВТОМАСТЕРСКОЙ ===" << std::endl;
     std::cout << "Адрес: " << address_ << std::endl;
@@ -144,7 +138,6 @@ void Garage::print_info() const {
     std::cout << "=====================================\n" << std::endl;
 }
 
-// вывести список доступных магнитол
 void Garage::print_available_radios() const {
     std::cout << "\n--- Доступные магнитолы (" << available_radios_.size() << ") ---" << std::endl;
     if (available_radios_.empty()) {
@@ -158,7 +151,6 @@ void Garage::print_available_radios() const {
     std::cout << "-------------------------------------\n" << std::endl;
 }
 
-// вывести список прикрепленных машин
 void Garage::print_attached_cars() const {
     std::cout << "\n--- Прикрепленные автомобили (" << attached_cars_.size() << ") ---" << std::endl;
     if (attached_cars_.empty()) {
