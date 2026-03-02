@@ -7,7 +7,6 @@
 #include <random>
 #include <chrono>
 
-// Forward declaration
 namespace mt {
     struct Radio;
     class Car;
@@ -23,11 +22,9 @@ private:
     std::string license_plate_;
     int mileage_;
     
-    // ДИНАМИЧЕСКОЕ ПОЛЕ - указатель на вектор вещей в багажнике
     std::vector<std::string>* trunk_items_;
     
-    // ПОЛЕ ДЛЯ МАГНИТОЛЫ
-    Radio* radio_;  // указатель на магнитолу (может быть nullptr)
+    Radio* radio_;
 
     bool is_mileage_valid_(int mileage) const {
         return mileage >= 0;
@@ -51,16 +48,16 @@ public:
         const std::string& body_number, const std::string& license_plate,
         int mileage, const std::vector<std::string>& trunk_items = {});
     
-    // конструктор копирования (правило трех)
+    // конструктор копирования
     Car(const Car& other);
     
-    // оператор присваивания (правило трех)
+    // оператор присваивания
     Car& operator=(const Car& other);
     
-    // деструктор (правило трех)
+    // деструктор
     ~Car();
     
-    // ГЕТТЕРЫ
+    // гет
     std::string get_brand() const { return brand_; }
     std::string get_model() const { return model_; }
     std::string get_body_number() const { return body_number_; }
@@ -69,7 +66,7 @@ public:
     std::vector<std::string> get_trunk_items() const { return *trunk_items_; }
     Radio* get_radio() const { return radio_; }
     
-    // СЕТТЕРЫ
+    // сет
     void set_body_number(const std::string& body_number);
     void set_license_plate(const std::string& license_plate);
     void set_radio(Radio* radio);
@@ -89,7 +86,6 @@ public:
     // метод для удаления вещей из багажника
     void remove_from_trunk(const std::string& item);
     
-    // ОПЕРАТОРЫ
     Car operator+(const Car& other) const;
     Car operator-(const Car& other) const;
     Car operator/(const Car& other) const;
