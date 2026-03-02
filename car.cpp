@@ -66,7 +66,6 @@ std::string Car::generate_random_plate_() const {
     return plate;
 }
 
-// вспомогательный метод для группировки повторов
 void Car::group_duplicates_(std::vector<std::string>& items) const {
     if (items.empty()) return;
     std::sort(items.begin(), items.end());
@@ -177,7 +176,6 @@ void Car::set_radio(Radio* radio) {
     }
 }
 
-// метод для вывода всей информации
 void Car::print_info() const {
     std::cout << "=== Информация об автомобиле ===" << std::endl;
     std::cout << "Марка: " << brand_ << std::endl;
@@ -186,7 +184,6 @@ void Car::print_info() const {
     std::cout << "Гос. номер: " << license_plate_ << std::endl;
     std::cout << "Пробег: " << mileage_ << " км" << std::endl;
     
-    // Информация о магнитоле
     std::cout << "Магнитола: ";
     if (radio_ != nullptr) {
         std::cout << radio_->model << " (" << radio_->description 
@@ -195,7 +192,6 @@ void Car::print_info() const {
         std::cout << "не установлена" << std::endl;
     }
     
-    // Информация о вещах в багажнике
     std::cout << "Вещи в багажнике (" << trunk_items_->size() << "): ";
     if (trunk_items_->empty()) {
         std::cout << "багажник пуст";
@@ -250,7 +246,6 @@ void Car::remove_from_trunk(const std::string& item) {
     }
 }
 
-// ОПЕРАТОР +
 Car Car::operator+(const Car& other) const {
     std::cout << "Выполняется оператор +" << std::endl;
     
@@ -272,7 +267,6 @@ Car Car::operator+(const Car& other) const {
     return result;
 }
 
-// ОПЕРАТОР -
 Car Car::operator-(const Car& other) const {
     std::cout << "Выполняется оператор -" << std::endl;
     
@@ -298,7 +292,6 @@ Car Car::operator-(const Car& other) const {
     return result;
 }
 
-// ОПЕРАТОР /
 Car Car::operator/(const Car& other) const {
     std::cout << "Выполняется оператор /" << std::endl;
     
