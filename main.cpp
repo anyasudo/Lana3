@@ -10,30 +10,17 @@ void print_personal_assessment() {
     std::cout << "\n=========================================" << std::endl;
     std::cout << "     ЛИЧНАЯ ОЦЕНКА ЛАБОРАТОРНОЙ РАБОТЫ" << std::endl;
     std::cout << "=========================================" << std::endl;
-    std::cout << "Интерес:      ★★★★★ (5/5) - Очень интересно создавать" << std::endl;
-    std::cout << "              взаимодействие между классами" << std::endl;
+    std::cout << "Интерес: 3/5" << std::endl;
     std::cout << std::endl;
-    std::cout << "Наполненность: ★★★★☆ (4/5) - Хороший объем, много" << std::endl;
-    std::cout << "              новых концепций (правило трех, операторы)" << std::endl;
+    std::cout << "Наполненность: 5/5" << std::endl;
     std::cout << std::endl;
-    std::cout << "Сложность:    ★★★☆☆ (3/5) - Умеренная сложность," << std::endl;
-    std::cout << "              главное понять взаимодействие классов" << std::endl;
+    std::cout << "Сложность: 5/5" << std::endl;
     std::cout << "=========================================\n" << std::endl;
 }
 
 int main() {
-    setlocale(LC_ALL, "Ru");
-    
-    std::cout << "=========================================" << std::endl;
-    std::cout << "     ЛАБОРАТОРНАЯ РАБОТА №3" << std::endl;
-    std::cout << "     Библиотеки и интеграция" << std::endl;
-    std::cout << "=========================================\n" << std::endl;
-    
+    setlocale(LC_ALL, "Ru");  
     try {
-        // ========== ЧАСТЬ 1: ДЕМОНСТРАЦИЯ РАБОТЫ КЛАССА CAR ==========
-        std::cout << "\n********** ЧАСТЬ 1: ДЕМОНСТРАЦИЯ КЛАССА CAR **********\n" << std::endl;
-        
-        // Создаем автомобили
         std::cout << "--- Создание автомобилей ---" << std::endl;
         Car car1("Toyota", "Camry", "123456789", "А123ВС", 50000, 
                  {"аптечка", "огнетушитель", "домкрат", "запаска"});
@@ -43,14 +30,12 @@ int main() {
         std::cout << "\ncar1: " << car1 << std::endl;
         std::cout << "car2: " << car2 << std::endl;
         
-        // Демонстрация геттеров
         std::cout << "\n--- Демонстрация геттеров ---" << std::endl;
         std::cout << "Марка car1: " << car1.get_brand() << std::endl;
         std::cout << "Модель car1: " << car1.get_model() << std::endl;
         std::cout << "Госномер car1: " << car1.get_license_plate() << std::endl;
         std::cout << "Пробег car1: " << car1.get_mileage() << " км" << std::endl;
         
-        // Демонстрация сеттеров
         std::cout << "\n--- Демонстрация сеттеров ---" << std::endl;
         car1.set_body_number("NEW123456");
         try {
@@ -59,20 +44,17 @@ int main() {
             std::cout << "Ошибка: " << e.what() << std::endl;
         }
         
-        // Демонстрация методов работы с пробегом
         std::cout << "\n--- Работа с пробегом ---" << std::endl;
         car1.drive(150);
         std::cout << "После поездки: пробег = " << car1.get_mileage() << " км" << std::endl;
         car1.rollback_mileage(50);
         std::cout << "После скручивания: пробег = " << car1.get_mileage() << " км" << std::endl;
         
-        // Демонстрация методов работы с багажником
         std::cout << "\n--- Работа с багажником ---" << std::endl;
         car1.add_to_trunk("канистра");
         car1.remove_from_trunk("аптечка");
         std::cout << "Текущий багажник car1: " << car1 << std::endl;
         
-        // Демонстрация операторов
         std::cout << "\n--- Демонстрация операторов ---" << std::endl;
         Car car3 = car1 + car2;
         std::cout << "car1 + car2 = " << car3 << std::endl;
@@ -85,14 +67,11 @@ int main() {
         
         std::cout << "\ncar1 == car2: " << (car1 == car2 ? "да" : "нет") << std::endl;
         
-        // ========== ЧАСТЬ 2: ДЕМОНСТРАЦИЯ РАБОТЫ КЛАССА GARAGE ==========
         std::cout << "\n\n********** ЧАСТЬ 2: ДЕМОНСТРАЦИЯ КЛАССА GARAGE **********\n" << std::endl;
         
-        // Создаем автомастерскую
         std::cout << "--- Создание автомастерской ---" << std::endl;
         Garage garage("ул. Ленина, д. 10");
         
-        // Добавляем магнитолы
         std::cout << "\n--- Добавление магнитол ---" << std::endl;
         garage.add_radio(Radio("Pioneer DEH-80", "CD/MP3-ресивер с Bluetooth", 15000));
         garage.add_radio(Radio("Sony MEX-XB", "Мощный усилитель встроен", 22000));
@@ -100,32 +79,28 @@ int main() {
         
         garage.print_available_radios();
         
-        // Прикрепляем машины к мастерской
         std::cout << "\n--- Прикрепление машин к мастерской ---" << std::endl;
         garage.attach_car(&car1);
         garage.attach_car(&car2);
         
         garage.print_attached_cars();
         
-        // Устанавливаем магнитолы в машины
         std::cout << "\n--- Установка магнитол в машины ---" << std::endl;
         garage.install_radio_to_car("А123ВС", "Pioneer DEH-80");
         garage.install_radio_to_car("М456ОР", "Alpine UTE-73");
         
-        // Пробуем установить несуществующую магнитолу
+        // пробуем установить несуществующую магнитолу
         garage.install_radio_to_car("А123ВС", "JBL");
         
-        // Пробуем найти несуществующую машину
+        // пробуем найти несуществующую машину
         garage.install_radio_to_car("Х999ХХ", "Pioneer DEH-80");
         
-        // Выводим обновленную информацию о машинах
         std::cout << "\n--- Обновленная информация о машинах ---" << std::endl;
         std::cout << "\ncar1:" << std::endl;
         car1.print_info();
         std::cout << "\ncar2:" << std::endl;
         car2.print_info();
         
-        // Демонстрация поиска машины
         std::cout << "\n--- Поиск машины по номеру ---" << std::endl;
         Car* found_car = garage.find_car("А123ВС");
         if (found_car) {
@@ -133,22 +108,16 @@ int main() {
                       << " " << found_car->get_model() << std::endl;
         }
         
-        // Демонстрация удаления магнитолы
         std::cout << "\n--- Удаление магнитолы ---" << std::endl;
         garage.remove_radio("Sony MEX-XB");
         garage.print_available_radios();
         
-        // Демонстрация открепления машины
         std::cout << "\n--- Открепление машины ---" << std::endl;
         garage.detach_car("М456ОР");
         garage.print_attached_cars();
         
-        // Демонстрация информации о мастерской
         std::cout << "\n--- Информация о мастерской ---" << std::endl;
         garage.print_info();
-        
-        // ========== ЧАСТЬ 3: ДЕМОНСТРАЦИЯ ПРАВИЛА ТРЕХ ==========
-        std::cout << "\n\n********** ЧАСТЬ 3: ДЕМОНСТРАЦИЯ ПРАВИЛА ТРЕХ **********\n" << std::endl;
         
         std::cout << "--- Конструктор копирования Car ---" << std::endl;
         Car car6 = car1;  // конструктор копирования
@@ -167,8 +136,6 @@ int main() {
         Garage garage3;
         garage3 = garage;  // оператор присваивания
         std::cout << "garage3 (после присваивания) создана" << std::endl;
-        
-        // ========== ЧАСТЬ 4: ЛИЧНАЯ ОЦЕНКА ==========
         print_personal_assessment();
         
     }
